@@ -16,6 +16,8 @@ function Layout() {
           <aside className="w-full md:w-64 order-2 md:order-1 border-r border-zinc-500 p-4">
             {/*<MainControls/>*/}
             Main Controls
+            <br/>
+            <button className="btn-primary">Button</button>
           </aside>
 
           <div className="w-full md:flex-1 order-1 md:order-2 p-4">

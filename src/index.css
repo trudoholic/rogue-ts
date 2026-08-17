@@ -4,3 +4,7 @@ body {
     background-color: var(--color-zinc-700);
     color: var(--color-zinc-200);
 }
+
+.btn-primary {
+    @apply px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700;
+}
