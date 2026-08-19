@@ -2,6 +2,7 @@
 // import MainControls from "./MainControls"
 // import MainView from "./MainView"
 // import AsideView from "./AsideView"
+import TileGrid from "./TileGrid"
 
 function Layout() {
   return (
@@ -22,7 +23,7 @@ function Layout() {
 
           <div className="w-full md:flex-1 order-1 md:order-2 p-4">
             {/*<MainView/>*/}
-            Main View
+            <TileGrid/>
           </div>
 
           <aside className="w-full md:w-72 order-3 md:order-3 border-l border-zinc-500 p-4">
