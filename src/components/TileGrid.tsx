@@ -3,10 +3,18 @@ import Tile from "./Tile"
 function TileGrid() {
   return (
     // <div className="flex flex-col">
-    //   <Tile id={123}/>
+    //   <Tile id={0}/>
+    //   <Tile id={0}/>
+    //   <Tile id={0}/>
     // </div>
 
-  <Tile id={0}/>
+  <div className="flex">
+    <Tile id={0}/>
+    <Tile id={0}/>
+    <Tile id={0}/>
+  </div>
+
+  // <Tile id={0}/>
   )
 }
 

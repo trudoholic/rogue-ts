@@ -14,8 +14,17 @@ function Tile({id}: CardViewProps) {
   // const idActive = useDeckStore(s => s.idActive)
   // const setActive = useDeckStore(s => s.setActive)
 
-  const classesOut = `size-10 flex items-center justify-center ${idActive === id? 'bg-zinc-50': cardColor}`
-  const classesIn = `size-8 flex items-center justify-center ${cardColor}`
+  const classesOut = `
+  size-10 
+  flex items-center justify-center 
+  border -ml-[1px] 
+  ${idActive === id? 'bg-zinc-50': cardColor}
+  `
+  const classesIn = `
+  size-8 
+  flex items-center justify-center 
+  ${cardColor}
+  `
 
   const txt = "0:0"
 
