@@ -11,7 +11,7 @@ function TileGrid() {
           <div key={row} className="flex">
             {
               range(COLS).map(col => (
-                <Tile key={col} id={col} row={row} col={col} />
+                <Tile key={col} row={row} col={col} />
               ))
             }
           </div>

@@ -1,37 +1,40 @@
-// import {useDeckStore} from "../store/useDeckStore"
-// import {getCard} from "../store/cards"
+import {useTileGrid, tileKey} from "../store/useTileGrid"
 
-const cardColors = ['bg-red-500', 'bg-green-500', 'bg-blue-500', 'bg-amber-500']
+const tileColors = ['bg-red-500', 'bg-green-500', 'bg-blue-500', 'bg-amber-500']
 
 type CardViewProps = {
-  id: number
   row: number
   col: number
 }
 
-function Tile({id, row, col}: CardViewProps) {
-  // const card = getCard(id)
-  const cardColor = cardColors[1] ?? 'bg-zinc-500'
-  const idActive = 42
-  // const idActive = useDeckStore(s => s.idActive)
-  // const setActive = useDeckStore(s => s.setActive)
+function Tile({row, col}: CardViewProps) {
+  const tileId = tileKey(row, col)
+  const tileColor = tileColors[1] ?? 'bg-zinc-500'
+  const idActive = useTileGrid(s => s.idActive)
+  const setActive = useTileGrid(s => s.setActive)
+
+  // console.log(row, col, idActive, tileKey(row, col), idActive === tileKey(row, col))
+
+  function handleClick() {
+    setActive(idActive === tileId? '': tileId)
+  }
 
   const classesOut = `
   size-16 
   flex items-center justify-center 
   border -mr-[1px] -mb-[1px] 
-  ${idActive === id? 'bg-zinc-50': cardColor}
+  ${idActive === tileId? 'bg-zinc-50': tileColor}
   `
   const classesIn = `
-  size-8 
+  size-14 
   flex items-center justify-center 
-  ${cardColor}
+  ${tileColor}
   `
 
   return (
     <div
       className={classesOut}
-      // onClick={() => setActive(idActive === id? 0: id)}
+      onClick={handleClick}
     >
       <div className={classesIn}>
         <p className={`font-mono text-lg text-center select-none`}>
