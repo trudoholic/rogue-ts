@@ -19,6 +19,10 @@ function Tile({row, col}: CardViewProps) {
     setActive(idActive === tileId? '': tileId)
   }
 
+  function handleRightClick () {
+    setActive(idActive === tileId? '': tileId)
+  }
+
   const classesOut = `
   size-16 
   flex items-center justify-center 
@@ -35,6 +39,10 @@ function Tile({row, col}: CardViewProps) {
     <div
       className={classesOut}
       onClick={handleClick}
+      onContextMenu={e => {
+        e.preventDefault()
+        handleRightClick()
+      }}
     >
       <div className={classesIn}>
         <p className={`font-mono text-lg text-center select-none`}>
