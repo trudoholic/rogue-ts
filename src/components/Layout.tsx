@@ -1,11 +1,13 @@
+import {useState} from "react"
 // import HeaderView from "./HeaderView"
 // import MainControls from "./MainControls"
 // import MainView from "./MainView"
 // import AsideView from "./AsideView"
 import TileGrid from "./TileGrid"
-import {test_1} from "./test"
 
 function Layout() {
+  const [appMode, setAppMode] = useState("Map")
+
   const classesBtn = "btn-primary w-full"
 
   return (
@@ -20,17 +22,16 @@ function Layout() {
           <aside className="w-full md:w-64 order-2 md:order-1 border-r border-zinc-500 p-4">
             {/*<MainControls/>*/}
             <div className="flex flex-col gap-1 items-center p-4">
-              <button className={classesBtn}>Button</button>
-              <button
-                className={classesBtn}
-                onClick={test_1}
-              >Button 1</button>
+              <button className={classesBtn} onClick={() => setAppMode("Map")}>Map</button>
+              <button className={classesBtn} onClick={() => setAppMode("Hero")}>Hero</button>
             </div>
           </aside>
 
           <div className="w-full md:flex-1 order-1 md:order-2 p-4">
             {/*<MainView/>*/}
-            <TileGrid/>
+            {
+              "Map" === appMode? <TileGrid/>: null
+            }
           </div>
 
           <aside className="w-full md:w-72 order-3 md:order-3 border-l border-zinc-500 p-4">
