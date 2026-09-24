@@ -3,6 +3,7 @@
 // import MainView from "./MainView"
 // import AsideView from "./AsideView"
 import TileGrid from "./TileGrid"
+import {test_1} from "./test"
 
 function Layout() {
   return (
@@ -16,9 +17,13 @@ function Layout() {
         <div className="h-full flex flex-col md:flex-row">
           <aside className="w-full md:w-64 order-2 md:order-1 border-r border-zinc-500 p-4">
             {/*<MainControls/>*/}
-            Main Controls
-            <br/>
-            <button className="btn-primary">Button</button>
+            <div className="flex flex-col gap-1 items-center">
+              <button className={"btn-primary" + " w-32"}>Button</button>
+              <button
+                className={"btn-primary" + " w-32"}
+                onClick={test_1}
+              >Button 1</button>
+            </div>
           </aside>
 
           <div className="w-full md:flex-1 order-1 md:order-2 p-4">
