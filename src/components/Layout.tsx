@@ -6,6 +6,8 @@ import TileGrid from "./TileGrid"
 import {test_1} from "./test"
 
 function Layout() {
+  const classesBtn = "btn-primary w-full"
+
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <header className="border-b border-zinc-500 p-4 text-center">
@@ -17,10 +19,10 @@ function Layout() {
         <div className="h-full flex flex-col md:flex-row">
           <aside className="w-full md:w-64 order-2 md:order-1 border-r border-zinc-500 p-4">
             {/*<MainControls/>*/}
-            <div className="flex flex-col gap-1 items-center">
-              <button className={"btn-primary" + " w-32"}>Button</button>
+            <div className="flex flex-col gap-1 items-center p-4">
+              <button className={classesBtn}>Button</button>
               <button
-                className={"btn-primary" + " w-32"}
+                className={classesBtn}
                 onClick={test_1}
               >Button 1</button>
             </div>
