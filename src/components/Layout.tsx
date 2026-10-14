@@ -3,6 +3,7 @@ import {useState} from "react"
 // import MainControls from "./MainControls"
 // import MainView from "./MainView"
 // import AsideView from "./AsideView"
+import UnitView from "./UnitView"
 import TileGrid from "./TileGrid"
 
 function Layout() {
@@ -30,7 +31,7 @@ function Layout() {
           <div className="w-full md:flex-1 order-1 md:order-2 p-4">
             {/*<MainView/>*/}
             {
-              "Map" === appMode? <TileGrid/>: null
+              "Map" === appMode? <TileGrid/>: <UnitView/>
             }
           </div>
 
