@@ -1,3 +1,4 @@
+import {useEffect} from "react"
 import {useUnitsStore} from "../store/useUnitsStore"
 import {useGameStatStore} from "../store/useGameStatStore"
 
@@ -5,12 +6,19 @@ function UnitView() {
   const gameStat = useGameStatStore(s => s.gameStat)
   const gameStatList = Object.entries(gameStat)
     .sort((a, b) => a[0].localeCompare(b[0]))
-  // console.log(gameStat)
-  // console.log(gameStatList)
   const updateGameStat = useGameStatStore(s => s.updateGameStat)
+
+  const cnt = useGameStatStore(s => s.cnt)
+  const incCnt = useGameStatStore(s => s.incCnt)
 
   const units = useUnitsStore(s => s.units)
   const updateUnit = useUnitsStore(s => s.updateUnit)
+
+  useEffect(() => {
+    if (cnt) {
+      console.log('cnt:', cnt)
+    }
+  }, [cnt])
 
   function hit(n:number) {
     const _hp = units[0].hp
@@ -20,6 +28,16 @@ function UnitView() {
   function heal(n:number) {
     const _hp = units[0].hp
     updateUnit(0, {hp: _hp + n})
+  }
+
+  function doFoo() {
+    updateGameStat("foo", 1)
+    incCnt()
+  }
+
+  function doBar() {
+    updateGameStat("bar", 2)
+    incCnt()
   }
 
   return (
@@ -44,8 +62,8 @@ function UnitView() {
             </div>
           ))
       }
-      <button className={'btn-primary w-25'} onClick={() => updateGameStat("foo", 1)}>foo + 1</button>
-      <button className={'btn-primary w-25'} onClick={() => updateGameStat("bar", 2)}>bar + 2</button>
+      <button className={'btn-primary w-25'} onClick={doFoo}>foo + 1</button>
+      <button className={'btn-primary w-25'} onClick={doBar}>bar + 2</button>
     </div>
 
   )
