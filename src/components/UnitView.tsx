@@ -1,8 +1,10 @@
-import {
-  useUnitsStore,
-} from "../store/useUnitsStore"
+import {useUnitsStore} from "../store/useUnitsStore"
+import {useGameStatStore} from "../store/useGameStatStore"
 
 function UnitView() {
+  const gameStat = useGameStatStore(s => s)
+  console.log(gameStat)
+
   const units = useUnitsStore(s => s.units)
   const updateUnit = useUnitsStore(s => s.updateUnit)
 
