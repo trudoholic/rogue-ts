@@ -1,6 +1,6 @@
 import {
   useUnitsStore,
-} from "../store/useUnits"
+} from "../store/useUnitsStore"
 
 function UnitView() {
   const units = useUnitsStore(s => s.units)
