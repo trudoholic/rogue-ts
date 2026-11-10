@@ -4,8 +4,10 @@ import {useGameStatStore} from "../store/useGameStatStore"
 function UnitView() {
   const gameStat = useGameStatStore(s => s.gameStat)
   const gameStatList = Object.entries(gameStat)
+    .sort((a, b) => a[0].localeCompare(b[0]))
   // console.log(gameStat)
   // console.log(gameStatList)
+  const updateGameStat = useGameStatStore(s => s.updateGameStat)
 
   const units = useUnitsStore(s => s.units)
   const updateUnit = useUnitsStore(s => s.updateUnit)
@@ -36,12 +38,14 @@ function UnitView() {
 
       {
         gameStatList.map(it => (
-          <div key={it[0]} className="flex gap-1">
-            <p>{it[0]}</p>
-            <p>{it[1]}</p>
-          </div>
-        ))
+            <div key={it[0]} className="flex gap-1">
+              <p>{it[0]}</p>
+              <p>{it[1]}</p>
+            </div>
+          ))
       }
+      <button className={'btn-primary w-25'} onClick={() => updateGameStat("foo", 1)}>foo + 1</button>
+      <button className={'btn-primary w-25'} onClick={() => updateGameStat("bar", 2)}>bar + 2</button>
     </div>
 
   )

@@ -2,11 +2,15 @@ import { create } from 'zustand'
 
 type TGameStat = {[key: string]: number}
 type GameStatState = {gameStat: TGameStat}
-// const initialState: GameStatState = {gameStat: {}}
-const initialState: GameStatState = {gameStat: {test:42, foo:1, bar:2}}
+const initialState: GameStatState = {gameStat: {}}
+// const initialState: GameStatState = {gameStat: {test:42, foo:1, bar:2}}
 
 interface GameStatActions {
   updateGameStat: (key: string, value: number) => void
+}
+
+function incGameStat(stat: TGameStat, key: string, value: number) {
+  return {...stat, [key]: (stat[key] ?? 0) +  value}
 }
 
 export const useGameStatStore = create<GameStatState & GameStatActions>(
@@ -14,7 +18,7 @@ export const useGameStatStore = create<GameStatState & GameStatActions>(
     ...initialState,
 
     updateGameStat: (key, value) => set((state) => (
-      {...state, [key]: value}
+      {...state, gameStat: incGameStat(state.gameStat, key, value)}
     )),
   })
 )
