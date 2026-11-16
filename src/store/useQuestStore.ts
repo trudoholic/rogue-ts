@@ -1,14 +1,14 @@
 import { create } from 'zustand'
 
 type TQuest = {
-  id: number
+  id: bigint
   active: boolean
 }
 
 const questList: TQuest[] = [
-  {id: 1, active: false},
-  {id: 2, active: true},
-  {id: 3, active: true},
+  {id: 1n, active: true},
+  {id: 2n, active: true},
+  {id: 3n, active: true},
 ]
 
 const initialState = {
@@ -18,7 +18,7 @@ const initialState = {
 type QuestsState = typeof initialState
 
 interface QuestsActions {
-  updateQuest: (idx: number, payload: Partial<TQuest>) => void
+  updateQuest: (idx: bigint, payload: Partial<TQuest>) => void
 }
 
 export const useQuestStore = create<QuestsState & QuestsActions>(
@@ -26,7 +26,7 @@ export const useQuestStore = create<QuestsState & QuestsActions>(
     ...initialState,
 
     updateQuest: (idx, payload) => set((state) => (
-      {quests: state.quests.map((quest, i) => (idx === i? {...quest, ...payload}: quest))}
+      {quests: state.quests.map(quest => (idx === quest.id? {...quest, ...payload}: quest))}
     )),
   })
 )

@@ -3,8 +3,11 @@ import {useUnitsStore} from "../store/useUnitsStore"
 import {useGameStatStore} from "../store/useGameStatStore"
 import {useQuestStore} from "../store/useQuestStore"
 
+let questCnt = 0n
+
 function UnitView() {
   const quests = useQuestStore(s => s.quests)
+  const updateQuest = useQuestStore(s => s.updateQuest)
 
   const gameStat = useGameStatStore(s => s.gameStat)
   const gameStatList = Object.entries(gameStat)
@@ -43,6 +46,10 @@ function UnitView() {
     incCnt()
   }
 
+  function testQuest() {
+    updateQuest(++ questCnt, {active: false})
+  }
+
   return (
     <div className="flex flex-col gap-1">
       {
@@ -77,6 +84,9 @@ function UnitView() {
           </div>
         ))
       }
+      <button className={'btn-primary w-25'} onClick={testQuest}>Test</button>
+      <hr className="border-zinc-500 my-4" />
+
     </div>
 
   )
