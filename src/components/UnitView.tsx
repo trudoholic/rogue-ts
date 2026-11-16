@@ -7,6 +7,7 @@ let questCnt = 0n
 
 function UnitView() {
   const quests = useQuestStore(s => s.quests)
+  const addQuest = useQuestStore(s => s.addQuest)
   const updateQuest = useQuestStore(s => s.updateQuest)
 
   const gameStat = useGameStatStore(s => s.gameStat)
@@ -77,6 +78,11 @@ function UnitView() {
       <button className={'btn-primary w-25'} onClick={doBar}>bar + 2</button>
       <hr className="border-zinc-500 my-4" />
 
+      <button className={'btn-primary w-25'} onClick={addQuest}>Add</button>
+      <button className={'btn-primary w-25'} onClick={testQuest}>Test</button>
+      {
+        quests.length? null: <p className={'text-red-500'}>No quests</p>
+      }
       {
         quests.map(it => (
           <div key={it.id} className="flex gap-1">
@@ -84,7 +90,6 @@ function UnitView() {
           </div>
         ))
       }
-      <button className={'btn-primary w-25'} onClick={testQuest}>Test</button>
       <hr className="border-zinc-500 my-4" />
 
     </div>
