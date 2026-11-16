@@ -14,7 +14,6 @@ const heroUnit: TUnit = {
   xp: 0,
 }
 
-
 const unitList: TUnit[] = [heroUnit]
 
 const initialState = {
@@ -32,7 +31,7 @@ export const useUnitsStore = create<UnitsState & UnitsActions>(
     ...initialState,
 
     updateUnit: (idx, payload) => set((state) => (
-      {units: state.units.map((p, i) => (idx === i? {...p, ...payload}: p))}
+      {units: state.units.map((unit, i) => (idx === i? {...unit, ...payload}: unit))}
     )),
   })
 )

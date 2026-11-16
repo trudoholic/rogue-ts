@@ -1,8 +1,11 @@
 import {useEffect} from "react"
 import {useUnitsStore} from "../store/useUnitsStore"
 import {useGameStatStore} from "../store/useGameStatStore"
+import {useQuestStore} from "../store/useQuestStore"
 
 function UnitView() {
+  const quests = useQuestStore(s => s.quests)
+
   const gameStat = useGameStatStore(s => s.gameStat)
   const gameStatList = Object.entries(gameStat)
     .sort((a, b) => a[0].localeCompare(b[0]))
@@ -53,6 +56,7 @@ function UnitView() {
       }
       <button className={'btn-primary w-25'} onClick={() => hit(10)}>Hit</button>
       <button className={'btn-primary w-25'} onClick={() => heal(10)}>Heal</button>
+      <hr className="border-zinc-500 my-4" />
 
       {
         gameStatList.map(it => (
@@ -64,6 +68,15 @@ function UnitView() {
       }
       <button className={'btn-primary w-25'} onClick={doFoo}>foo + 1</button>
       <button className={'btn-primary w-25'} onClick={doBar}>bar + 2</button>
+      <hr className="border-zinc-500 my-4" />
+
+      {
+        quests.map(it => (
+          <div key={it.id} className="flex gap-1">
+            <p className={it.active? 'text-green-500': 'text-red-500'}>{`# ${it.id} ${it.active} #`}</p>
+          </div>
+        ))
+      }
     </div>
 
   )
