@@ -1,11 +1,19 @@
 import { create } from 'zustand'
 
+/** GameStat */
+export const GS = {
+  foo: "foo",
+  bar: "bar",
+} as const
+
+export type TGameStat = typeof GS[keyof typeof GS]
+
 let questId = 0n
 
 type TQuest = {
   id: bigint
   active: boolean
-  stat: string
+  stat: TGameStat
   value: number
 }
 
@@ -14,7 +22,7 @@ const testQuest = (): TQuest => {
   return {
     id: questId,
     active: true,
-    stat: 'foo',
+    stat: GS.foo,
     value: +(questId + '0'),
   }
 }

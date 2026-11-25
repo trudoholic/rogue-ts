@@ -1,7 +1,7 @@
 import {useEffect} from "react"
 import {useUnitsStore} from "../store/useUnitsStore"
 import {useGameStatStore} from "../store/useGameStatStore"
-import {useQuestStore} from "../store/useQuestStore"
+import {useQuestStore, type TGameStat, GS} from "../store/useQuestStore"
 
 let questCnt = 0n
 
@@ -46,13 +46,8 @@ function UnitView() {
     updateUnit(0, {hp: _hp + n})
   }
 
-  function doFoo() {
-    updateGameStat("foo", 1)
-    incCnt()
-  }
-
-  function doBar() {
-    updateGameStat("bar", 2)
+  function updateStat(key: TGameStat, value: number) {
+    updateGameStat(key, value)
     incCnt()
   }
 
@@ -83,8 +78,8 @@ function UnitView() {
             </div>
           ))
       }
-      <button className={'btn-primary w-25'} onClick={doFoo}>foo + 1</button>
-      <button className={'btn-primary w-25'} onClick={doBar}>bar + 2</button>
+      <button className={'btn-primary w-25'} onClick={() => updateStat(GS.foo, 1)}>foo + 1</button>
+      <button className={'btn-primary w-25'} onClick={() => updateStat(GS.bar, 2)}>bar + 2</button>
       <hr className="border-zinc-500 my-4" />
 
       <button className={'btn-primary w-25'} onClick={addQuest}>Add</button>
