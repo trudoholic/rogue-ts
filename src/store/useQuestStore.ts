@@ -5,13 +5,21 @@ let questId = 0n
 type TQuest = {
   id: bigint
   active: boolean
+  stat: string
+  value: number
 }
 
-const questList: TQuest[] = [
-  // {id: 1n, active: true},
-  // {id: 2n, active: true},
-  // {id: 3n, active: true},
-]
+const testQuest = (): TQuest => {
+  ++questId
+  return {
+    id: questId,
+    active: true,
+    stat: 'foo',
+    value: +(questId + '0'),
+  }
+}
+
+const questList: TQuest[] = []
 
 const initialState = {
   quests: questList,
@@ -29,7 +37,7 @@ export const useQuestStore = create<QuestsState & QuestsActions>(
     ...initialState,
 
     addQuest: () => set((state) => (
-      {quests: [...state.quests, {id: ++ questId, active: true}]}
+      {quests: [...state.quests, testQuest()]}
     )),
 
     updateQuest: (idx, payload) => set((state) => (

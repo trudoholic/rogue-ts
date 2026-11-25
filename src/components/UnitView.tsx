@@ -27,8 +27,10 @@ function UnitView() {
       quests
         .filter(it => it.active)
         .forEach(it => {
-          console.log(`# ${it.id} ${it.active} #`)
-          updateQuest(it.id, {active: false})
+          const statValue = gameStat[it.stat] ?? 0
+          if (statValue >= it.value) {
+            updateQuest(it.id, {active: false})
+          }
         })
     }
   }, [cnt])
@@ -92,7 +94,9 @@ function UnitView() {
       {
         quests.map(it => (
           <div key={it.id} className="flex gap-1">
-            <p className={it.active? 'text-green-500': 'text-red-500'}>{`# ${it.id} ${it.active} #`}</p>
+            <p className={it.active? 'text-green-500': 'text-red-500'}>{
+              `# ${it.id} ${it.active} ${it.stat} ${it.value} #`
+            }</p>
           </div>
         ))
       }
