@@ -21,14 +21,15 @@ function UnitView() {
   const units = useUnitsStore(s => s.units)
   const updateUnit = useUnitsStore(s => s.updateUnit)
 
+  const checkQuest = (key: string, value: number) => ((gameStat[key] ?? 0) >= value)
+
   useEffect(() => {
     if (cnt) {
       console.log('cnt:', cnt)
       quests
         .filter(it => it.active)
         .forEach(it => {
-          const statValue = gameStat[it.stat] ?? 0
-          if (statValue >= it.value) {
+          if (checkQuest(it.stat, it.value)) {
             updateQuest(it.id, {active: false})
           }
         })
