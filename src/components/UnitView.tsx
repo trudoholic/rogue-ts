@@ -1,7 +1,8 @@
 import {useEffect} from "react"
 import {useUnitsStore} from "../store/useUnitsStore"
 import {useGameStatStore} from "../store/useGameStatStore"
-import {useQuestStore, type TGameStat, GS} from "../store/useQuestStore"
+import {useQuestStore} from "../store/useQuestStore"
+import {type TGameStat, GS} from "../enums"
 
 let questCnt = 0n
 
@@ -29,7 +30,7 @@ function UnitView() {
       quests
         .filter(it => it.active)
         .forEach(it => {
-          if (checkQuest(it.stat, it.value)) {
+          if (checkQuest(it.gameStat, it.value)) {
             updateQuest(it.id, {active: false})
           }
         })
@@ -82,7 +83,8 @@ function UnitView() {
       <button className={'btn-primary w-25'} onClick={() => updateStat(GS.bar, 2)}>bar + 2</button>
       <hr className="border-zinc-500 my-4" />
 
-      <button className={'btn-primary w-25'} onClick={addQuest}>Add</button>
+      <button className={'btn-primary w-25'} onClick={() => addQuest(GS.foo)}>Add foo</button>
+      <button className={'btn-primary w-25'} onClick={() => addQuest(GS.bar)}>Add bar</button>
       <button className={'btn-primary w-25'} onClick={testQuest}>Test</button>
       {
         quests.length? null: <p className={'text-red-500'}>No quests</p>
@@ -91,7 +93,7 @@ function UnitView() {
         quests.map(it => (
           <div key={it.id} className="flex gap-1">
             <p className={it.active? 'text-green-500': 'text-red-500'}>{
-              `# ${it.id} ${it.active} ${it.stat} ${it.value} #`
+              `# ${it.id} ${it.active} ${it.gameStat} ${it.value} #`
             }</p>
           </div>
         ))

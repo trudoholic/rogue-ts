@@ -1,28 +1,21 @@
 import { create } from 'zustand'
-
-/** GameStat */
-export const GS = {
-  foo: "foo",
-  bar: "bar",
-} as const
-
-export type TGameStat = typeof GS[keyof typeof GS]
+import {type TGameStat} from "../enums"
 
 let questId = 0n
 
 type TQuest = {
   id: bigint
   active: boolean
-  stat: TGameStat
+  gameStat: TGameStat
   value: number
 }
 
-const testQuest = (): TQuest => {
+const testQuest = (key: TGameStat): TQuest => {
   ++questId
   return {
     id: questId,
     active: true,
-    stat: GS.foo,
+    gameStat: key,
     value: +(questId + '0'),
   }
 }
@@ -36,7 +29,7 @@ const initialState = {
 type QuestsState = typeof initialState
 
 interface QuestsActions {
-  addQuest: () => void
+  addQuest: (key: TGameStat) => void
   updateQuest: (idx: bigint, payload: Partial<TQuest>) => void
 }
 
@@ -44,8 +37,8 @@ export const useQuestStore = create<QuestsState & QuestsActions>(
   (set) => ({
     ...initialState,
 
-    addQuest: () => set((state) => (
-      {quests: [...state.quests, testQuest()]}
+    addQuest: (key) => set((state) => (
+      {quests: [...state.quests, testQuest(key)]}
     )),
 
     updateQuest: (idx, payload) => set((state) => (
