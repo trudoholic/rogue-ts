@@ -24,6 +24,12 @@ function UnitView() {
   useEffect(() => {
     if (cnt) {
       console.log('cnt:', cnt)
+      quests
+        .filter(it => it.active)
+        .forEach(it => {
+          console.log(`# ${it.id} ${it.active} #`)
+          updateQuest(it.id, {active: false})
+        })
     }
   }, [cnt])
 
